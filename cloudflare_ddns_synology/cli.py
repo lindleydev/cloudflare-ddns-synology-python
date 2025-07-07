@@ -91,12 +91,12 @@ def main():
     syslog.openlog("cloudflare_ddns", syslog.LOG_PID)
     syslog.syslog(syslog.LOG_INFO, f"Invocation: {' '.join(sys.argv)}")
     # Check if we're being called with positional arguments (Synology style)
-    # Synology passes arguments in the order: hostname, IP, username, password
+    # Synology passes arguments in the order: username, password, hostname, myip
     if len(sys.argv) == 5 and not sys.argv[1].startswith('-'):
-        hostname = sys.argv[1]
-        myip = sys.argv[2]
-        username = sys.argv[3]
-        password = sys.argv[4]
+        username = sys.argv[1]
+        password = sys.argv[2]
+        hostname = sys.argv[3]
+        myip = sys.argv[4]
     else:
         # Otherwise use argparse for named arguments (for manual CLI usage)
         parser = argparse.ArgumentParser(description="Cloudflare DDNS updater for Synology custom DDNS provider.")
