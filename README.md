@@ -2,30 +2,13 @@
 
 This project provides a Python script and Synology integration for using Cloudflare as a custom DDNS provider.
 
-## Quick Install (Recommended for Synology)
-
-You can install the DDNS script and add the provider entry in one step by downloading and running the install script directly from GitHub:
-
-```sh
-wget https://raw.githubusercontent.com/lindleydev/cloudflare-ddns-synology-python/main/wget-install.sh -O /tmp/wget-install.sh
-chmod +x /tmp/wget-install.sh
-sudo /tmp/wget-install.sh
-```
-
-This will:
-- Download the latest DDNS script to `/sbin/cloudflare_ddns.py`
-- Make it executable
-- Add the provider entry to `/etc/ddns_provider.conf`
-
-If you want to do this manually, see the scripts for details.
-
 ## Quick Install (Standalone Binary for Synology)
 
 You can install the DDNS script as a single-file binary (no Python or pip required) by downloading the latest release from GitHub:
 
 ```sh
-wget https://github.com/lindleydev/cloudflare-ddns-synology-python/releases/latest/download/cloudflare_ddns.py -O /sbin/cloudflare_ddns.py
-sudo chmod +x /sbin/cloudflare_ddns.py
+wget https://github.com/lindleydev/cloudflare-ddns-synology-python/releases/latest/download/cloudflare_ddns.py -O /usr/syno/bin/ddns/cloudflare_ddns.py
+sudo chmod +x /usr/syno/bin/ddns/cloudflare_ddns.py
 ```
 
 Then add the provider entry:

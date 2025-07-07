@@ -4,7 +4,7 @@
 
 SCRIPT_URL="https://raw.githubusercontent.com/<your-username>/<your-repo>/main/cloudflare_ddns_synology/cli.py"
 ADD_PROVIDER_URL="https://raw.githubusercontent.com/<your-username>/<your-repo>/main/add_synology_ddns_provider.sh"
-TARGET_PATH="/sbin/cloudflare_ddns.py"
+TARGET_PATH="/usr/syno/bin/ddns/cloudflare_ddns.py"
 ADD_PROVIDER_SCRIPT="/tmp/add_synology_ddns_provider.sh"
 
 set -e
