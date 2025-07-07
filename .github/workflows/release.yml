@@ -12,10 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Rename script for release
+        run: cp cloudflare_ddns_synology/cli.py cloudflare_ddns.py
+
       - name: Upload Release Asset (Raw Script)
         uses: softprops/action-gh-release@v2
         with:
-          files: cloudflare_ddns_synology/cli.py
-          name: cloudflare_ddns.py
+          files: cloudflare_ddns.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
