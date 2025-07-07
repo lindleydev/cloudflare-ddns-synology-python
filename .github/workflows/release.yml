@@ -1,4 +1,4 @@
-name: Build and Release Binary
+name: Release Synology Cloudflare DDNS Script
 
 on:
   push:
@@ -6,29 +6,16 @@ on:
       - 'v*'
 
 jobs:
-  build-and-release:
+  release-script:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install build dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller cloudflare-ddns
-
-      - name: Build standalone binary
-        run: |
-          pyinstaller --onefile --name cloudflare_ddns.py cloudflare_ddns_synology/cli.py
-
-      - name: Upload Release Asset
+      - name: Upload Release Asset (Raw Script)
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/cloudflare_ddns.py
+          files: cloudflare_ddns_synology/cli.py
+          name: cloudflare_ddns.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
