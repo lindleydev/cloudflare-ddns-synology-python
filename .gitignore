@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+.eggs/
+
+# VSCode
+.vscode/
+
+# Test/coverage
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Synology/Install
+/sbin/cloudflare_ddns.py
