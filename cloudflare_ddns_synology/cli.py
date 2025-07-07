@@ -87,6 +87,9 @@ class CloudFlare:
             return resp.read().decode().strip()
 
 def main():
+    # Log invocation and arguments at the start
+    syslog.openlog("cloudflare_ddns", syslog.LOG_PID)
+    syslog.syslog(syslog.LOG_INFO, f"Invocation: {' '.join(sys.argv)}")
     # Check if we're being called with positional arguments (Synology style)
     # Synology passes arguments in the order: hostname, IP, username, password
     if len(sys.argv) == 5 and not sys.argv[1].startswith('-'):
@@ -130,7 +133,6 @@ def main():
             tb_str = traceback.format_exc()
             print(tb_str, file=sys.stderr)
             # Log full error and traceback to syslog
-            syslog.openlog("cloudflare_ddns", syslog.LOG_PID)
             syslog.syslog(syslog.LOG_ERR, error_msg + "\n" + tb_str)
     if success:
         print('good')
