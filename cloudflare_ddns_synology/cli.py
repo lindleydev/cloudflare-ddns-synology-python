@@ -6,6 +6,8 @@ import argparse
 import urllib.request
 import urllib.parse
 import json
+import traceback
+import syslog
 
 class CloudFlare:
     def __init__(self, email, api_key, domain):
@@ -114,20 +116,22 @@ def main():
         single_hostname = single_hostname.strip()  # Remove any whitespace
         if not single_hostname:
             continue
-            
         try:
             cf = CloudFlare(
                 email=username,
                 api_key=password,
                 domain=single_hostname
             )
-            # Update the DNS record with the current IP
             cf.sync_dns_from_my_ip()
-            # Continue with other domains even if one succeeds
         except Exception as e:
             success = False
-            print(f"Error updating {single_hostname}: {str(e)}", file=sys.stderr)
-    
+            error_msg = f"Error updating {single_hostname}: {str(e)}"
+            print(error_msg, file=sys.stderr)
+            tb_str = traceback.format_exc()
+            print(tb_str, file=sys.stderr)
+            # Log full error and traceback to syslog
+            syslog.openlog("cloudflare_ddns", syslog.LOG_PID)
+            syslog.syslog(syslog.LOG_ERR, error_msg + "\n" + tb_str)
     if success:
         print('good')
         return 0
