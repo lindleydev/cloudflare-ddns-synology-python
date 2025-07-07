@@ -47,11 +47,24 @@ This method is recommended for Synology and other systems without Python package
 ## Synology Custom Provider Setup
 - In DSM, add a new custom DDNS provider and select "Cloudflare".
 - No parameters are needed in the query URL; Synology will call the local script.
-- The script expects the following parameters:
-  - `hostname`: DNS record to update
+- The script accepts the following parameters:
+  - `hostname`: DNS record(s) to update. Multiple domains can be separated with `--` (e.g., `domain1.com--domain2.com`)
   - `myip`: IP address to set
   - `username`: Cloudflare account email
   - `password`: Cloudflare API token
+
+### Usage Modes
+This script supports two ways of being called:
+
+1. **Synology DDNS Provider Mode** (positional arguments):
+   ```
+   /sbin/cloudflare_ddns.py example.com--subdomain.example.com 1.2.3.4 your@email.com api_token
+   ```
+
+2. **Manual CLI Mode** (named arguments):
+   ```
+   /sbin/cloudflare_ddns.py --hostname example.com--subdomain.example.com --myip 1.2.3.4 --username your@email.com --password api_token
+   ```
 
 ## Testing
 Run tests with:
