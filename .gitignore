@@ -1,11 +1,25 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.egg-info/
-.venv/
+*.so
+*.pyd
+*.pyo
+
+# Distribution / packaging
+.Python
 build/
 dist/
+*.egg-info/
 .eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+venv/
+ENV/
 
 # VSCode
 .vscode/
@@ -20,3 +34,10 @@ Thumbs.db
 
 # Synology/Install
 /sbin/cloudflare_ddns.py
+
+# PyInstaller
+*.spec
+
+# Binary output (do NOT ignore in dist/ for releases)
+!/dist/cloudflare_ddns.py
+cloudflare_ddns.py
